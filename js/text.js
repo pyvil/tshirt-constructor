@@ -1,7 +1,7 @@
 /**
- * author: Vitaliy Pyatin
+ * @author Vitaliy Pyatin <mail.pyvil@gmail.com>
+ * @copyright 2016
  */
-
 (function($, document, window) {
 
     /**
@@ -19,26 +19,8 @@
 
         // param that has been passed
         this.param.useDefault = param.useDefault || true;
-        this.param.popupWrapper = param.popupWrapper || $('.pyvil_textEditor');
-        this.param.editor = param.editor || $('.tshirt_creator_wrapper');
-
-        if ( typeof this.param.popupWrapper === 'string' ) {
-            var temp = this.param.popupWrapper;
-            if ( temp[0] == '#' || temp[0] == '.' ) {
-                this.param.popupWrapper = $(temp);
-            } else {
-                this.param.popupWrapper = $('.'+temp);
-            }
-        }
-
-        if ( typeof this.param.editor === 'string' ) {
-            var temp = this.param.editor;
-            if ( temp[0] == '#' || temp[0] == '.' ) {
-                this.param.editor = $(temp);
-            } else {
-                this.param.editor = $('.'+temp);
-            }
-        }
+        this.param.popupWrapper = Helper.toObj(param.popupWrapper, null) || $('.pyvil_textEditor');
+        this.param.editor = Helper.toObj(param.editor, null) || $('.tshirt_creator_wrapper');
 
         // param to detect default font family
         this.default = [
@@ -236,14 +218,14 @@
                     "<div class='properties'>" +
                         "<label>Текст</label>" +
                         this.getTextarea() +
-                    "</div>" 
+                    "</div>"
                 );
             }
             // set click listener
             this.addTextListener();
         }
     };
-    
+
     // register object
     window.TextEditor = TextEditor || {};
 
