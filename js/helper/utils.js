@@ -1,4 +1,6 @@
 /**
+ * Static Helper utils class
+ *
  * @author Vitaliy Pyatin <mail.pyvil@gmail.com>
  * @copyright 2016
  */
@@ -8,9 +10,10 @@ var Helper = function () {};
  * Helper: convert variable to integer value
  * @param _var
  * @returns {number}
- * @param _default
+ * @param [_default]
  */
 Helper.toInt = function (_var, _default) {
+    _default = _default || false;
     return (_var == null || _var == 0)
         ? _default : parseInt(_var, 10) ;
 };
@@ -19,9 +22,10 @@ Helper.toInt = function (_var, _default) {
  * Helper: convert variable to Object value
  * @param _var
  * @returns {Object}
- * @param _default
+ * @param [_default]
  */
 Helper.toObj = function (_var, _default) {
+    _default = _default || false;
     if (typeof _var == 'String') {
         if ($(_var)) return $(_var);
         if ($('.' + _var)) return $('.' + _var);
