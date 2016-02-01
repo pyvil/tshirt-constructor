@@ -8,33 +8,35 @@ var Helper = function () {};
 
 /**
  * Helper: convert variable to integer value
- * @param _var
+ * @param value
  * @returns {number}
- * @param [_default]
+ * @param [defaults]
  */
-Helper.toInt = function (_var, _default) {
-    _default = _default || false;
-    return (_var == null || _var == 0)
-        ? _default : parseInt(_var, 10) ;
+Helper.toInt = function (value, defaults) {
+    defaults = defaults || false;
+    return (value == null || value == 0)
+        ? defaults : parseInt(value, 10) ;
 };
 
 /**
  * Helper: convert variable to Object value
- * @param _var
+ * @param value
  * @returns {Object}
- * @param [_default]
+ * @param [defaults]
  */
-Helper.toObj = function (_var, _default) {
-    _default = _default || false;
-    if (typeof _var == 'String') {
-        if ($(_var)) return $(_var);
-        if ($('.' + _var)) return $('.' + _var);
-        if ($('#' + _var)) return $('#' + _var);
-    } else if (typeof _var == 'Object') {
-        return $(_var);
+Helper.toObj = function (value, defaults) {
+    defaults = defaults || null;
+    if (typeof value == 'string') {
+        value = value.replace('.', '');
+        value = value.replace('#', '');
+        var target = document.getElementsByClassName(value);
+        if (target.length > 0)
+            return target;
+        return document.getElementById(value);
+    } else if (typeof value == 'object') {
+        return value;
     }
-    return $(_default);
-    //throw new Error("You pass a wrong parameter, please check parameters you pass!");
+    return defaults;
 };
 
 /**
@@ -43,12 +45,17 @@ Helper.toObj = function (_var, _default) {
  */
 Helper.centerModal = function(obj){
 
-    obj = Helper.toObj(obj, null);
+    obj = Helper.toObj(obj);
 
     if (obj == null) return false;
 
-    $(obj).css("top", Math.max(0, (($(window).height() - $(obj).outerHeight()) / 2)) + "px");
-    $(obj).css("left", Math.max(0, (($(window).width() - $(obj).outerWidth()) / 2)) + "px");
+    // if in class array get the 1-st item otherwise use given object
+    obj = obj.length > 1 ? obj[0] : obj;
+
+    console.log(obj);
+
+    obj.style.top = Math.max(0, ((window.innerHeight - obj.offsetHeight) / 2)) + "px";
+    obj.style.left = Math.max(0, ((window.innerWidth - obj.offsetWidth) / 2)) + "px";
 };
 
 
