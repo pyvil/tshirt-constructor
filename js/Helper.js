@@ -11,6 +11,7 @@ var Helper = function () {};
  * @param _default
  */
 Helper.toInt = function (_var, _default) {
+  _default = _default || false;
     return (_var == null || _var == 0)
         ? _default : parseInt(_var, 10) ;
 };
@@ -22,14 +23,15 @@ Helper.toInt = function (_var, _default) {
  * @param _default
  */
 Helper.toObj = function (_var, _default) {
+  _default = _default || false;
     if (typeof _var == 'String') {
-        if ($(_var)) return $(_var);
-        if ($('.' + _var)) return $('.' + _var);
-        if ($('#' + _var)) return $('#' + _var);
+        _var = _var.replace('.', '');
+        if (document.getElementsByClassName(_var)) return $(_var);
+        if (document.getElementById(_var)) return document.getElementById(_var);
     } else if (typeof _var == 'Object') {
-        return $(_var);
+        return _var;
     }
-    return $(_default);
+    return _default;
     //throw new Error("You pass a wrong parameter, please check parameters you pass!");
 };
 
