@@ -34,10 +34,9 @@ var TC = (function () {
                     if (typeof value == 'string') {
                         value = value.replace('.', '');
                         value = value.replace('#', '');
-                        var target = document.getElementsByClassName(value);
-                        if (target.length > 0)
-                            return target;
-                        return document.getElementById(value);
+                        var target = document.getElementById(value);
+                        if (target != null) return target;
+                        return document.getElementsByClassName(value);
                     } else if (typeof value == 'object') {
                         return value;
                     }
@@ -54,7 +53,7 @@ var TC = (function () {
                     if (obj == null) return false;
 
                     // if in class array get the 1-st item otherwise use given object
-                    obj = Array.isArray(obj) ? obj[0] : obj;
+                    obj = (obj instanceof HTMLCollection) ? obj[0] : obj;
 
                     obj.style.top = Math.max(0, ((window.innerHeight - obj.offsetHeight) / 2)) + "px";
                     obj.style.left = Math.max(0, ((window.innerWidth - obj.offsetWidth) / 2)) + "px";

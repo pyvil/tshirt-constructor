@@ -23,8 +23,8 @@ var TC = (function(){
 
       // param that has been passed
       self.param.useDefault = param.useDefault || true;
-      self.param.popupWrapper = this.helper.utils.toObj(param.popupWrapper) || $('.pyvil_textEditor');
-      self.param.editor = this.helper.utils.toObj(param.editor) || $('.tshirt_creator_wrapper');
+      self.param.popupWrapper = self.helper.utils.toObj(param.popupWrapper) || $('.pyvil_textEditor');
+      self.param.editor = self.helper.utils.toObj(param.editor) || $('.tshirt_creator_wrapper');
 
       // param to detect default font family
       self.default = [
@@ -187,7 +187,7 @@ var TC = (function(){
      * add text
      */
     this.TextEditor.addTextListener = function () {
-        $(this.param.eventObject).click(function (e) {
+        $(self.param.eventObject).click(function (e) {
             if ((self.canvas.getActiveObject() !== undefined) && (self.canvas.getActiveObject() != null) ) {
                 var obj = self.canvas.getActiveObject();
 
@@ -225,7 +225,7 @@ var TC = (function(){
         $('.styleBold').bind('click', function (e) {
 
         });*/
-    },
+    };
 
     /**
      * set form
