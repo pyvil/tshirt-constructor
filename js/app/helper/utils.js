@@ -24,26 +24,6 @@ var TC = (function () {
                 },
 
                 /**
-                 * Helper: convert variable to Object value
-                 * @param value
-                 * @returns {Object}
-                 * @param [defaults]
-                 */
-                toObj : function(value, defaults) {
-                    defaults = defaults || null;
-                    if (typeof value == 'string') {
-                        value = value.replace('.', '');
-                        value = value.replace('#', '');
-                        var target = document.getElementById(value);
-                        if (target != null) return target;
-                        return document.getElementsByClassName(value);
-                    } else if (typeof value == 'object') {
-                        return value;
-                    }
-                    return defaults;
-                },
-
-                /**
                  * Put block in the center of the screen
                  * @param obj
                  */
