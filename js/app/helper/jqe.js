@@ -1,37 +1,47 @@
 /**
- * Helper object
- * @type {{toObj: Function}}
- */
-var helper = {
-    /**
-     * Helper: convert variable to Object value
-     * @param value
-     * @returns {Object}
-     */
-    toObj : function(value) {
-        if (typeof value == 'string') {
-            value = value.replace('.', '');
-            value = value.replace('#', '');
-            var target = document.getElementById(value);
-            if (target != null) return target;
-            return document.getElementsByClassName(value);
-        } else if (typeof value == 'object') {
-            return value;
-        }
-        return null;
-    }
-};
-
-/**
  *
  * @param proton
  */
 var $$jqe = function (proton) {
-    return new _$$jqe(helper.toObj(proton));
+    /**
+     * Transform to object given @param
+     * or return the object if object given
+     *
+     * @param proton
+     */
+    var toObj = function (proton) {
+        var obj    = null;
+        if (typeof proton == 'string') {
+            var typeOf = proton.charAt(0);
+            var name   = proton.replace('.', '');
+            name       = proton.replace('#', '');
+            switch (typeOf) {
+                // if class given
+                case '.' :
+                    obj = document.getElementsByClassName(name);
+                    break;
+
+                // if id give
+                case '#' :
+                    obj = document.getElementById(name);
+                    break;
+
+                // if html tag given
+                default :
+                    obj = document.getElementsByTagName(name);
+                    break;
+            }
+        }else if(typeof proton == 'object') {
+            obj = proton;
+        }
+
+        return obj;
+    };
+
+    return new _$$jqe(toObj(proton));
 };
 
-_$$jqe = function (obj) {this.instance = obj};
-
-_$$jqe.prototype.log = function () {
-    console.log(this.instance);
+var _$$jqe = function (obj) {
+    if (obj == null) return null;
+    this.instance = obj;
 };
