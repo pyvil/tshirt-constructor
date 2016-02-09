@@ -6,21 +6,30 @@ Testing env.
 
 For installed testing env was used *npm*
 
-Two test frameworks was used: jasmine and qunit
+Two test frameworks were used: jasmine and mocha (with mocha-jsdom)
 
 Install jasmine:
 ```
 sudo npm install -g jasmine
 ```
 
-Install qunit and qunit-cli:
+Install mocha and mocha-jsdom:
 
 ```
-npm i qunit
+sudo npm install -g mocha
+sudo npm install -g mocha-jsdom
 ```
 
-And qunit-cli:
+To run *mocha* test run the command: 
+```
+npm test
+```
 
+If errors occurs run commands below:
 ```
-sudo npm install qunit-cli -g
+npm install chai
+npm install mocha-standard
+npm install commander
 ```
+
+And re-run *npm test*

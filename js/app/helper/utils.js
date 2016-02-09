@@ -52,3 +52,5 @@ var TC = (function () {
         }
     }
 }).apply(TC);
+
+module.exports = TC;

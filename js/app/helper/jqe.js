@@ -44,7 +44,8 @@ var $$jqe = function (proton) {
 var _$$jqe = function (obj) {
     if (obj == null) return null;
     this.instance = obj;
-    return this.instance;
 };
 
-global.$$jge = $$jqe;
+_$$jqe.size = function() {
+    return this.instance.length;
+};
