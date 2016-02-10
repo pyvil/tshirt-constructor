@@ -1,4 +1,30 @@
 /**
+*
+*
+*
+*/
+
+var _$$jqe = function (obj) {
+    // define passing object
+    if (obj == null) return null;
+    this.instance = obj;
+
+    /**
+    * Get object amount in DOM
+    *
+    * @return numeric
+    */
+    this.size = function () {
+       return this.instance.length;
+    }
+
+    return this;
+};
+
+
+
+/**
+ * The main class which depend on {_$$jqe} class
  *
  * @param proton
  */
@@ -40,12 +66,4 @@ var $$jqe = function (proton) {
 
     return new _$$jqe(toObj(proton));
 };
-
-var _$$jqe = function (obj) {
-    if (obj == null) return null;
-    this.instance = obj;
-};
-
-_$$jqe.size = function() {
-    return this.instance.length;
-};
+module.exports = $$jqe;
