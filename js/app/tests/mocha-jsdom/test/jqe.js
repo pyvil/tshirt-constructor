@@ -1,18 +1,30 @@
-/* global describe, before, it, document, expect */
+/**
+ * Testing cases for module JQE
+ * Tests runs with DOM elements
+ */
 
+// DOM stuff
 var jsdom = require('../index')
-//
+
+// test stuff
+var assert = require('assert');
+
 describe('jqe', function () {
 
-  var $$jqe
-  jsdom()
+    var $$jqe
 
-  before(function () {
-    $$jqe = require('../../../helper/jqe.js')
-  })
+    jsdom()
 
-  it('test body tag returns', function () {
-    console.log($$jqe('body').size())
-  })
+    before(function () {
+        $$jqe = require('../../../helper/jqe.js')
+    })
+
+    it('should not return null or undefined', function () {
+        assert.notEqual(null || undefined, $$jqe('q'));
+    })
+
+    it('should be only 1 body tag', function () {
+        assert.equal(1, $$jqe('body').size())
+    })
 
 })
