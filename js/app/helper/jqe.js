@@ -1,12 +1,10 @@
 /**
-*
-*
-*
-*/
-
+ *
+ * @param obj
+ * @returns {*}
+ * @private
+ */
 var _$$jqe = function (obj) {
-    // define passing object
-    if (obj == null) return null;
     this.instance = obj;
 
     /**
@@ -16,7 +14,9 @@ var _$$jqe = function (obj) {
     */
     this.size = function () {
        return this.instance.length;
-    }
+    };
+
+
 
     return this;
 };
