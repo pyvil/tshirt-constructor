@@ -19,6 +19,10 @@ describe('jqe', function () {
         $$jqe = require('../../../helper/jqe.js')
     })
 
+    it('must return NodeList when select not id elements', function () {
+         assert.equal(true, ($$jqe('body') instanceof NodeList))
+    })
+
     it('should not return null or undefined', function () {
         assert.notEqual(null || undefined, $$jqe('q'));
     })
