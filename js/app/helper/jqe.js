@@ -16,6 +16,39 @@ var _$$jqe = function (obj) {
        return this.instance.length;
     };
 
+    /**
+    * Get needed element in list
+    *
+    * @return object
+    */
+    this.get = function (index) {
+       if (this.instance instanceof NodeList) {
+           this.instance = this.instance.item(index);
+       }
+       return this;
+    }
+
+    /**
+    * Get first element
+    *
+    * @return object
+    */
+    this.first = function () {
+        this.get(0);
+
+        return this;
+    }
+
+    /**
+    * Get last element
+    *
+    * @return object
+    */
+    this.last = function () {
+        this.get(this.size() - 1);
+
+        return this;
+    }
 
 
     return this;
@@ -39,22 +72,16 @@ var $$jqe = function (proton) {
         var obj    = null;
         if (typeof proton == 'string') {
             var typeOf = proton.charAt(0);
-            var name   = proton.replace('.', '');
-            name       = proton.replace('#', '');
-            switch (typeOf) {
-                // if class given
-                case '.' :
-                    obj = document.getElementsByClassName(name);
-                    break;
 
-                // if id give
-                case '#' :
-                    obj = document.getElementById(name);
-                    break;
+            switch (typeOf) {
+              // if id give
+              case '#' :
+                  obj = document.querySelector(proton);
+                  break;
 
                 // if html tag given
                 default :
-                    obj = document.getElementsByTagName(name);
+                    obj = document.querySelectorAll(proton);
                     break;
             }
         }else if(typeof proton == 'object') {
