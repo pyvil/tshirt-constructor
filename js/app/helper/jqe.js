@@ -5,7 +5,7 @@
  * @private
  */
 var _$$jqe = function (obj) {
-    this.instance = obj;
+    var instance = obj;
 
     /**
     * Get object amount in DOM
@@ -13,7 +13,7 @@ var _$$jqe = function (obj) {
     * @return numeric
     */
     this.size = function () {
-       return this.instance.length;
+       return instance.length;
     };
 
     /**
@@ -22,8 +22,8 @@ var _$$jqe = function (obj) {
     * @return object
     */
     this.get = function (index) {
-       if (this.instance instanceof NodeList) {
-           this.instance = this.instance.item(index);
+       if (instance instanceof NodeList) {
+           instance = instance.item(index);
        }
        return this;
     }
